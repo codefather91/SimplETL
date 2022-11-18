@@ -11,25 +11,18 @@ root.resizable(False, False)
 def selectFile():
     fileTypes = (('Text Files', '*.txt'), ('Comma Separated Files', '*.csv'),('All Files','*.*'))
     fileName = fd.askopenfilename(title='Select File', initialdir='.',filetypes=fileTypes)
-    FileNameLabel.config(text=fileName)
+    filenameLabel.config(text=fileName)
 
 mainFrame = tk.Frame(root, bg='gray')
-mainFrame.pack(fill="both", expand=True)
 
-status = tk.Label(root, text="SimplETL tool ready", relief='sunken', anchor=tk.W, bd=1)
-status.pack(side="bottom", fill='x')
+filenameLabel = tk.Label(mainFrame, bg='white', text='File name')
+#filenameLabel.pack(padx=10, pady=10, fill='x', expand=True, side="left")
+filenameLabel.grid(row=0,column=0,padx=10,pady=10, columnspan=4)
 
-SelectionBox = tk.Frame(mainFrame, bg='red')
-SelectionBox.pack(padx=10, pady=(10, 0),fill="both",expand=True)
+selectFileButton = tk.Button(mainFrame, text='Select File',command=selectFile)
+#selectFileButton.pack(expand=True, side="left")
+selectFileButton.grid(row=0,column=4,padx=10,pady=10)
 
-FileNameLabel = tk.Label(SelectionBox, bg='white', text='File name')
-FileNameLabel.pack(padx=10, pady=10, fill='x', expand=True, side="left")
-SelectFileButton = tk.Button(SelectionBox, text='Select File',command=selectFile)
-SelectFileButton.pack(expand=True, side="left")
-ConfirmFileButton = tk.Button(SelectionBox, text='Proceed')
-ConfirmFileButton.pack(expand=True, side="left")
-
-MetadataBox = tk.Frame(mainFrame, bg='green')
-MetadataBox.pack(padx=10, pady=(10, 0),fill="both",expand=True)
+mainFrame.pack(expand=True)
 
 root.mainloop()
